@@ -8,6 +8,24 @@
     <link rel="stylesheet" type="text/css" href="styles/styles.css" />
   </head>
   <body>
+    <div id="centerContainer">
+      <div id="sketchGrid"></div>
+    </div>
 
+    <script>
+      let sketchGrid = document.querySelector("#sketchGrid");
+      const gridSize = 16;
+
+      for (i = 0; i < gridSize; i++) {
+        let row = document.createElement("div");
+        row.classList.add("row");
+        for (j = 0; j < gridSize; j++) {
+          let cell = document.createElement("div");
+          cell.classList.add("cell");
+          row.appendChild(cell);
+        }
+        sketchGrid.appendChild(row);
+      }
+    </script>
   </body>
 </html>
