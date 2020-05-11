@@ -3,6 +3,23 @@ body {
   height: 100%;
 }
 
+button#clearGrid {
+  margin-bottom: 18px;
+  border-radius: 0.2em;
+  box-shadow: 0 0.05em 0.25em 0 rgba(0,0,0,0.5);
+  color: #fff;
+  display: inline-block;
+  font-size: 1em;
+  font-weight: bold;
+  letter-spacing: 0.2px;
+  padding: 1rem 3.5rem;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  background-color: orange;
+}
+
 .cell {
   background: white;
   width: 6.25%;
@@ -14,6 +31,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 #sketchGrid {
