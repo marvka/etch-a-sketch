@@ -27,6 +27,15 @@ function buildGrid (gridSize = 16) {
   }
 }
 
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
 newGridButton.addEventListener("click", (e) => {
   let gridSize = prompt("How many squares per side do you want in your new Grid?");
   deleteGrid();
