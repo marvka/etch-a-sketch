@@ -13,9 +13,11 @@ function buildGrid (gridSize = 16) {
   for (i = 0; i < gridSize; i++) {
     let row = document.createElement("div");
     row.classList.add("row");
+    row.style.height = `${1 / gridSize * 100}%`;
     for (j = 0; j < gridSize; j++) {
       let cell = document.createElement("div");
       cell.classList.add("cell");
+      cell.style.width = `${1 / gridSize * 100}%`;
       cell.addEventListener("mouseover", (e) => {
         cell.style.background = "black";
       });

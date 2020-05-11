@@ -22,8 +22,7 @@ button#newGrid {
 
 .cell {
   background: white;
-  width: 6.25%;
-  margin: 2px 2px;
+  margin: 1px 1px;
 }
 
 #centerContainer {
@@ -44,6 +43,5 @@ button#newGrid {
 .row {
   display: flex;
   flex-direction: row;
-  height: 6.25%;
   width: 100%;
 }
