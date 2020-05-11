@@ -14,3 +14,11 @@ for (i = 0; i < gridSize; i++) {
   }
   sketchGrid.appendChild(row);
 }
+
+function setGridColors (color) {
+
+}
+
+function deleteGrid () {
+  sketchGrid.innerHTML = "";
+}
