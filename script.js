@@ -1,7 +1,5 @@
 const sketchGrid = document.querySelector("#sketchGrid");
-let gridSize = 16;
-
-buildGrid();
+const newGridButton = document.querySelector("#newGrid");
 
 function setGridColors (color) {
 
@@ -26,3 +24,11 @@ function buildGrid (gridSize = 16) {
     sketchGrid.appendChild(row);
   }
 }
+
+newGridButton.addEventListener("click", (e) => {
+  let gridSize = prompt("How many squares per side do you want in your new Grid?");
+  deleteGrid();
+  buildGrid(gridSize);
+});
+
+buildGrid();
