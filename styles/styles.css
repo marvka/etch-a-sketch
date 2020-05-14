@@ -21,7 +21,7 @@ button#newGrid {
 }
 
 .cell {
-  background: white;
+  background: #fff;
   margin: 1px 1px;
 }
 
@@ -34,7 +34,7 @@ button#newGrid {
 }
 
 #sketchGrid {
-  background: gray;
+  background: black;
   height: 650px;
   width: 650px;
   border: 3px solid #22cc39;
