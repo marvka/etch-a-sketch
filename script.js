@@ -1,42 +1,49 @@
 const sketchGrid = document.querySelector("#sketchGrid");
 const newGridButton = document.querySelector("#newGrid");
 
-function darkenRGBAColor(rgba) {
-  extractRGBValues(rgba);
+function getDarkenedRGBAcolor(RGBAarray) {
+  return `rgba(${RGBAarray[0]}, ${RGBAarray[1]}, ${RGBAarray[2]}, ${
+    RGBAarray[3] - 0.1
+  })`;
 }
 
-// TODO implement function that darkens color that has already been filled with a random color
-function setCellColor(e) {
-  const cell = e.currentTarget;
+function getRGBAarrayFromBackgroundColor(RGBstring) {
+  let RGBAarray = [];
 
-  if (!cell.style.backgroundColor) {
-    cell.style.backgroundColor = getRandomColor();
-    return;
-  }
-
-  let RGBA_Array = [];
-  if (/rgba/.test(cell.style.backgroundColor)) {
-    RGBA_Array = extractRGBValues(cell.style.backgroundColor);
+  if (/rgba/.test(RGBstring)) {
+    RGBAarray = extractRGBvalues(RGBstring);
   } else {
-    RGBA_Array = extractRGBValues(convertRGBtoRGBA(cell.style.backgroundColor));
+    RGBAarray = extractRGBvalues(convertRGBtoRGBA(RGBstring));
   }
 
-  if (RGBA_Array[3] > 0) {
-    cell.style.backgroundColor = `rgba(${RGBA_Array[0]}, ${RGBA_Array[1]}, ${RGBA_Array[2]}, ${RGBA_Array[3] - 0.1})`;
-  }
-
-  console.log(cell.style.backgroundColor);
+  return RGBAarray;
 }
 
-function convertRGBtoRGBA(RGBString) {
+function determineNewColor(cell) {
+  if (!cell.style.backgroundColor) {
+    return getRandomColor();
+  }
+
+  const RGBAarray = getRGBAarrayFromBackgroundColor(cell.style.backgroundColor);
+  if (RGBAarray[3] > 0) {
+    return getDarkenedRGBAcolor(RGBAarray);
+  }
+}
+
+function changeCellColor(e) {
+  const cell = e.currentTarget;
+  cell.style.backgroundColor = determineNewColor(cell);
+}
+
+function convertRGBtoRGBA(RGBstring) {
   let RGBAString = "";
-  RGBAString = RGBString.replace(/rgb/, "rgba");
+  RGBAString = RGBstring.replace(/rgb/, "rgba");
   RGBAString = RGBAString.replace(/\)/, ", 1)");
   return RGBAString;
 }
 
-function extractRGBValues(RBGString) {
-  return RBGString.match(/\d+, \d+, \d+, \d+\.*\d*/)
+function extractRGBvalues(RBGstring) {
+  return RBGstring.match(/\d+, \d+, \d+, \d+\.*\d*/)
     .toString()
     .split(", ");
 }
@@ -57,7 +64,7 @@ function buildGrid(gridSize = 16) {
 
       cell.classList.add("cell");
       cell.style.width = `${(1 / gridSize) * 100}%`;
-      cell.addEventListener("mouseover", setCellColor);
+      cell.addEventListener("mouseover", changeCellColor);
 
       row.appendChild(cell);
     }
@@ -66,16 +73,16 @@ function buildGrid(gridSize = 16) {
 }
 
 function getRandomColor() {
-  let RGBString = "rgb(";
+  let RGBstring = "rgb(";
   for (let i = 0; i < 3; i++) {
     if (i < 2) {
-      RGBString += `${Math.floor(Math.random() * 255)},`;
+      RGBstring += `${Math.floor(Math.random() * 255)},`;
     } else if (i < 3) {
-      RGBString += `${Math.floor(Math.random() * 255)})`;
+      RGBstring += `${Math.floor(Math.random() * 255)})`;
     }
   }
 
-  return RGBString;
+  return RGBstring;
 }
 
 newGridButton.addEventListener("click", (e) => {
