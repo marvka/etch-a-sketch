@@ -3,6 +3,10 @@ body {
   height: 100%;
 }
 
+body {
+  background-color: bisque;
+}
+
 button#newGrid {
   margin-bottom: 18px;
   border-radius: 0.2em;
